@@ -15,9 +15,6 @@ class MReactElement extends React.Component {
 		super();
 		this.info = null
 	}
-	componentDidMount() {
-		console.log(this.info)
-	}
 
 	render(){
 		return (

@@ -7,13 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-'use strict';
+
 
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
 	(global.React = factory());
-}(this, (function () { 'use strict';
+}(this, (function () { 
 
 // TODO: this is special because it gets imported during build.
 
@@ -382,7 +382,7 @@ var emptyObject = {};
  * Base class helpers for the updating state of a component.
  */
 function Component(props, context, updater) {
-	console.log('in function Component');
+  console.log(2)
   this.props = props;
   this.context = context;
   // If a component has string refs, we will assign a different object later.
@@ -1843,7 +1843,7 @@ function defineRefPropWarningGetter(props, displayName) {
  * @internal
  */
 var ReactElement = function (type, key, ref, self, source, owner, props) {
-  var element = {
+	var element = {
     // This tag allows us to uniquely identify this as a React Element
     $$typeof: REACT_ELEMENT_TYPE,
 
@@ -1856,8 +1856,6 @@ var ReactElement = function (type, key, ref, self, source, owner, props) {
     // Record the component responsible for creating this element.
     _owner: owner
   };
-	// console.log(element,'element');
-	// debugger
   {
     // The validation flag is currently mutative. We put it on
     // an external backing store so that we can freeze the whole object.
@@ -1904,7 +1902,7 @@ var ReactElement = function (type, key, ref, self, source, owner, props) {
  * See https://reactjs.org/docs/react-api.html#createelement
  */
 function createElement(type, config, children) {
-
+	console.log('type',type)
   var propName = void 0;
 
   // Reserved names are extracted
@@ -1972,8 +1970,6 @@ function createElement(type, config, children) {
       }
     }
   }
-	console.log(props,'p')
-	debugger
 	// type 为元素类型，'div'
   return ReactElement(type, key, ref, self, source, ReactCurrentOwner.current, props);
 }
@@ -2145,7 +2141,7 @@ function releaseTraverseContext(traverseContext) {
  * @return {!number} The number of children in this subtree.
  */
 function traverseAllChildrenImpl(children, nameSoFar, callback, traverseContext) {
-  var type = typeof children;
+	var type = typeof children;
 
   if (type === 'undefined' || type === 'boolean') {
     // All of the above are perceived as null.
@@ -3095,7 +3091,6 @@ var React = {
 
   __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED: ReactSharedInternals
 };
-
 // Note: some APIs are added with feature flags.
 // Make sure that stable builds for open source
 // don't modify the React object to avoid deopts.
@@ -3113,13 +3108,10 @@ if (enableStableConcurrentModeAPIs) {
 var React$2 = Object.freeze({
 	default: React
 });
-
 var React$3 = ( React$2 && React ) || React$2;
-
 // TODO: decide on the top-level export form.
 // This is hacky but makes it work with both Rollup and Jest.
 var react = React$3.default || React$3;
-
 return react;
 
 })));

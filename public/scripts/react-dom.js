@@ -7,13 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-'use strict';
+
 
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('react')) :
 	typeof define === 'function' && define.amd ? define(['react'], factory) :
 	(global.ReactDOM = factory(global.React));
-}(this, (function (React) { 'use strict';
+}(this, (function (React) { 
 
 /**
  * Use invariant() to assert state which your program assumes to be true.
@@ -12863,7 +12863,7 @@ function renderWithHooks(current, workInProgress, Component, props, refOrContext
   {
     ReactCurrentDispatcher$1.current = nextCurrentHook === null ? HooksDispatcherOnMountInDEV : HooksDispatcherOnUpdateInDEV;
   }
-
+  console.log(9991)
   var children = Component(props, refOrContext);
 
   if (didScheduleRenderPhaseUpdate) {
@@ -20735,6 +20735,7 @@ var ReactDOM = {
     return legacyRenderSubtreeIntoContainer(null, element, container, true, callback);
   },
   render: function (element, container, callback) {
+    console.log(12)
     !isValidContainer(container) ? invariant(false, 'Target container is not a DOM element.') : void 0;
     {
       !!container._reactHasBeenPassedToCreateRootDEV ? warningWithoutStack$1(false, 'You are calling ReactDOM.render() on a container that was previously ' + 'passed to ReactDOM.%s(). This is not supported. ' + 'Did you mean to call root.render(element)?', enableStableConcurrentModeAPIs ? 'createRoot' : 'unstable_createRoot') : void 0;
