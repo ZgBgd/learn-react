@@ -16,3 +16,8 @@ function createRoot(container, options) {
    //const root = ReactDOM.createRoot(document.getElementById('root'));
 }
 ```
+
+###### 如何优雅的调试react源码
+###### react.js.map react-dom.js.map
+map文件生成 (看文章)[https://juejin.cn/post/7126501202866470949#heading-0]
+注意点：需要修改bulder.js文件。因为有的不支持生成sourceMap会报错，所以只生成react和react-dom即可。

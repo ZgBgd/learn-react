@@ -2,7 +2,7 @@
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
 	(global.React = factory());
-}(this, (function () { 'use strict';
+}(this, (function () { 
 
 // TODO: this is special because it gets imported during build.
 
@@ -3093,4 +3093,4 @@ var react = React$3.default || React$3;
 return react;
 
 })));
-//# sourceMappingURL=react.development.js.map
+//  # sourceMappingURL=react.development.js.map

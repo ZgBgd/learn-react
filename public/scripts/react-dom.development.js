@@ -2,7 +2,7 @@
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('react')) :
 	typeof define === 'function' && define.amd ? define(['react'], factory) :
 	(global.ReactDOM = factory(global.React));
-}(this, (function (React) { 'use strict';
+}(this, (function (React) { 
 
 /**
  * Use invariant() to assert state which your program assumes to be true.
@@ -20142,7 +20142,9 @@ function scheduleRootUpdate(current$$1, element, expirationTime, callback) {
   }
 
   flushPassiveEffects();
+  // 将更新加入队列
   enqueueUpdate(current$$1, update);
+  // 开始任务调度
   scheduleWork(current$$1, expirationTime);
 
   return expirationTime;
@@ -20170,7 +20172,7 @@ function updateContainerAtExpirationTime(element, container, parentComponent, ex
   } else {
     container.pendingContext = context;
   }
-
+  // context = null
   return scheduleRootUpdate(current$$1, element, expirationTime, callback);
 }
 
@@ -20459,7 +20461,7 @@ ReactBatch.prototype.commit = function () {
     firstBatch.render(firstBatch._children);
   }
 };
-ReactBatch.prototype._onComplete = function () {
+ReactBatch.prototype._onComplete = function () {x
   if (this._didComplete) {
     return;
   }
@@ -20511,6 +20513,8 @@ ReactWork.prototype._onCommit = function () {
 };
 
 function ReactRoot(container, isConcurrent, hydrate) {
+  console.log(container,'container')
+  // div false false 
   var root = createContainer(container, isConcurrent, hydrate);
   this._internalRoot = root;
 }
@@ -20615,6 +20619,7 @@ function legacyCreateRootFromDOMContainer(container, forceHydrate) {
   var shouldHydrate = forceHydrate || shouldHydrateDueToLegacyHeuristic(container);
   // First clear any existing content.
   if (!shouldHydrate) {
+    // 删除root 节点内的子节点
     var warned = false;
     var rootSibling = void 0;
     while (rootSibling = container.lastChild) {
@@ -20633,7 +20638,7 @@ function legacyCreateRootFromDOMContainer(container, forceHydrate) {
       lowPriorityWarning$1(false, 'render(): Calling ReactDOM.render() to hydrate server-rendered markup ' + 'will stop working in React v17. Replace the ReactDOM.render() call ' + 'with ReactDOM.hydrate() if you want React to attach to the server HTML.');
     }
   }
-  // Legacy roots are not async by default.
+  // Legacy roots are not async by default. root节点不可以是异步的
   var isConcurrent = false;
   return new ReactRoot(container, isConcurrent, shouldHydrate);
 }
@@ -20646,9 +20651,12 @@ function legacyRenderSubtreeIntoContainer(parentComponent, children, container, 
   // TODO: Without `any` type, Flow says "Property cannot be accessed on any
   // member of intersection type." Whyyyyyy.
   var root = container._reactRootContainer;
+  //root 初始化时为undefined
   if (!root) {
     // Initial mount
+    // fiberRoot
     root = container._reactRootContainer = legacyCreateRootFromDOMContainer(container, forceHydrate);
+    // 
     if (typeof callback === 'function') {
       var originalCallback = callback;
       callback = function () {
@@ -20656,6 +20664,7 @@ function legacyRenderSubtreeIntoContainer(parentComponent, children, container, 
         originalCallback.call(instance);
       };
     }
+    // 进入此函数时，root节点已经初始化完毕
     // Initial mount should not be batched.
     unbatchedUpdates(function () {
       if (parentComponent != null) {
@@ -20726,6 +20735,7 @@ var ReactDOM = {
     {
       !!container._reactHasBeenPassedToCreateRootDEV ? warningWithoutStack$1(false, 'You are calling ReactDOM.render() on a container that was previously ' + 'passed to ReactDOM.%s(). This is not supported. ' + 'Did you mean to call root.render(element)?', enableStableConcurrentModeAPIs ? 'createRoot' : 'unstable_createRoot') : void 0;
     }
+    // start in this function
     return legacyRenderSubtreeIntoContainer(null, element, container, false, callback);
   },
   unstable_renderSubtreeIntoContainer: function (parentComponent, element, containerNode, callback) {
@@ -20850,4 +20860,4 @@ var reactDom = ReactDOM$3.default || ReactDOM$3;
 return reactDom;
 
 })));
-//# sourceMappingURL=react-dom.development.js.map
+//  # sourceMappingURL=react-dom.development.js.map

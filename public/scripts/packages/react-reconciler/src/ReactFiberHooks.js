@@ -319,7 +319,7 @@ export function renderWithHooks(
         ? HooksDispatcherOnMount
         : HooksDispatcherOnUpdate;
   }
-
+  console.log(props)
   let children = Component(props, refOrContext);
 
   if (didScheduleRenderPhaseUpdate) {

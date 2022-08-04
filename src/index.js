@@ -9,6 +9,7 @@ import RCom from "./scripts/reactComponent";
 import LforwardRef from "./scripts/lforwardRef";
 import Context,{Consumer} from './scripts/context/index';
 import Lcontext from './scripts/lcontext';
+import ForRender from './test/forRender';
 // ReactDOM.render(<div>
 // 	{
 // 		React.createElement('div',{v:100},React.createElement('div',{},React.createElement('div',{},'6666')))
@@ -19,5 +20,8 @@ import Lcontext from './scripts/lcontext';
 // const RCom = function (props) {
 // 	return React.createElement('div',{value:pro})
 // }
-console.log(RCom.toString())
-ReactDOM.render(<RCom/>,document.getElementById('root'))
+
+ReactDOM.render(
+React.createElement(ForRender,{val:100}),
+document.getElementById('root')
+)
